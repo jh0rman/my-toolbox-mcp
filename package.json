@@ -1,14 +1,13 @@
 {
   "name": "mcp-ui-documentation",
+  "version": "1.0.0",
   "module": "index.ts",
   "type": "module",
   "private": true,
   "bin": {
-    "weather": "./dist/index.js"
+    "mcp-ui-documentation": "./dist/index.js"
   },
-  "files": [
-    "dist"
-  ],
+  "files": ["dist"],
   "scripts": {
     "build": "pkgroll && bun -e \"require('fs').chmodSync('dist/index.js', '755')\"",
     "lint": "biome check",
