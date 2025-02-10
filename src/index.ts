@@ -2,6 +2,7 @@ import { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js'
 import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js'
 import packageJson from '../package.json'
 import { listComponents } from './tools/list-components'
+import { getComponentDocs } from './tools/get-component-docs'
 import { registerTool } from './utils/register-tool'
 
 // Create server instance
@@ -12,6 +13,7 @@ const server = new McpServer({
 
 // Registrar tools
 registerTool(server, listComponents)
+registerTool(server, getComponentDocs)
 
 async function main() {
   const transport = new StdioServerTransport()
