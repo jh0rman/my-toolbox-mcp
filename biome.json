@@ -10,7 +10,8 @@
       "all": true,
       "correctness": {
         "noUndeclaredVariables": "off",
-        "useImportExtensions": "off"
+        "useImportExtensions": "off",
+        "noNodejsModules": "off"
       },
       "style": {
         "noDefaultExport": "off",
@@ -19,6 +20,9 @@
       },
       "nursery": {
         "all": false
+      },
+      "suspicious": {
+        "noConsole": "off"
       }
     }
   },
