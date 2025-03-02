@@ -1,5 +1,5 @@
 {
-  "name": "mcp-ui-documentation",
+  "name": "my-toolbox-mcp",
   "version": "1.0.0",
   "module": "index.ts",
   "type": "module",
@@ -9,6 +9,7 @@
   },
   "files": ["dist"],
   "scripts": {
+    "dev": "bun src/index.ts",
     "build": "pkgroll && bun -e \"require('fs').chmodSync('dist/index.js', '755')\"",
     "lint": "biome check",
     "lint:fix": "biome check --fix"

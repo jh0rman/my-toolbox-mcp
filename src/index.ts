@@ -1,24 +1,20 @@
-import { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js'
+import { McpServer } from './utils/mcp-server'
 import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js'
 import packageJson from '../package.json'
 import { listComponents } from './tools/list-components'
 import { getComponentDocs } from './tools/get-component-docs'
-import { registerTool } from './utils/register-tool'
 
-// Create server instance
 const server = new McpServer({
   name: packageJson.name,
-  version: packageJson.version,
+  version: packageJson.version
 })
 
-// Registrar tools
-registerTool(server, listComponents)
-registerTool(server, getComponentDocs)
+server.register(listComponents)
+server.register(getComponentDocs)
 
 async function main() {
   const transport = new StdioServerTransport()
-  await server.connect(transport)
-  console.error('UI Docs MCP Server running on stdio')
+  await server.start(transport)
 }
 
 main().catch((error) => {
