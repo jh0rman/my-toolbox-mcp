@@ -9,9 +9,10 @@
     "rules": {
       "all": true,
       "correctness": {
+        "noNodejsModules": "off",
+        "noUndeclaredDependencies": "off",
         "noUndeclaredVariables": "off",
-        "useImportExtensions": "off",
-        "noNodejsModules": "off"
+        "useImportExtensions": "off"
       },
       "style": {
         "noDefaultExport": "off",

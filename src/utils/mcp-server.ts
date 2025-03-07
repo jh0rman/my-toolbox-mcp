@@ -22,9 +22,13 @@ export class McpServer {
     console.info(`${styleText('magenta', 'Initializing MCP Server:')} ${this.options.name} v${this.options.version}`)
   }
 
-  register<T extends z.ZodRawShape>(tool: McpTool<T>) {
+  register<Params extends z.ZodRawShape>(tool: McpTool<Params>) {
     console.info(`${styleText('green', 'Registering tool:')} ${tool.name} ${styleText('gray', tool.description)}`)
     this.server.tool(tool.name, tool.description, tool.parameters, tool.handler)
+  }
+
+  static defineTool<Params extends z.ZodRawShape>(tool: McpTool<Params>) {
+    return tool
   }
 
   async start(transport: StdioServerTransport) {
