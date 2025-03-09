@@ -6,18 +6,20 @@ export const getAsanaTasks = McpServer.defineTool({
   name: 'get-asana-tasks',
   description: 'Get tasks from Asana',
   parameters: {
-    project: z.string().describe('The project ID to filter tasks on'),
-    section: z.string().optional().describe('The section ID to filter tasks on'),
-    assignee: z.string().optional().describe('The assignee ID to filter tasks on'),
+    workspace_gid: z.string().describe('The workspace ID'),
+    'sections.any': z.string().optional().describe('The section ID'),
+    'projects.any': z.string().optional().describe('The project ID'),
+    'assignee.any': z.string().optional().describe('The assignee ID'),
+    resource_subtype: z.enum(['default_task', 'milestone']).default('default_task').describe('The resource subtype to filter by'),
   },
-  handler: async (params) => {
+  handler: async ({ workspace_gid, ...params }) => {
     try {
       const client = Asana.ApiClient.instance
       const token = client.authentications.token
       token.accessToken = Bun.env.ASANA_ACCESS_TOKEN
 
-      const taskApiInstance = new Asana.TasksApi()
-      const result = await taskApiInstance.getTasks(params)
+      const tasksApiInstance = new Asana.TasksApi()
+      const result = await tasksApiInstance.searchTasksForWorkspace(workspace_gid, params)
 
       return {
         content: [

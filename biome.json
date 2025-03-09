@@ -17,7 +17,8 @@
       "style": {
         "noDefaultExport": "off",
         "noNamespaceImport": "off",
-        "useFilenamingConvention": "off"
+        "useFilenamingConvention": "off",
+        "useNamingConvention": "off"
       },
       "nursery": {
         "all": false

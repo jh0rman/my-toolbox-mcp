@@ -1,6 +1,7 @@
 import { McpServer } from './utils/mcp-server'
 import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js'
 import packageJson from '../package.json'
+import { getAsanaSections } from './tools/asana/get-sections'
 import { getAsanaTasks } from './tools/asana/get-tasks.js'
 
 const server = new McpServer({
@@ -8,6 +9,7 @@ const server = new McpServer({
   version: packageJson.version
 })
 
+server.register(getAsanaSections)
 server.register(getAsanaTasks)
 
 async function main() {
