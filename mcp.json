@@ -1,0 +1,14 @@
+{
+  "mcpServers": {
+    "my-toolbox": {
+      "command": "bun",
+      "args": ["src/index.ts"],
+      "env": {
+        "ASANA_ACCESS_TOKEN": "",
+        "ASANA_WORKSPACE_ID": "",
+        "ASANA_PROJECT_ID": "",
+        "ASANA_PLAYER_ID": ""
+      }
+    }
+  }
+}
