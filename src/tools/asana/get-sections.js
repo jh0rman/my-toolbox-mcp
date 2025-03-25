@@ -6,16 +6,17 @@ export const getAsanaSections = McpServer.defineTool({
   name: 'get-asana-sections',
   description: 'Get sections for a project from Asana',
   parameters: {
-    project: z.string().describe('The project ID to filter sections on'),
+    project: z.string().optional().describe('The project ID to filter sections on'),
   },
   handler: async ({ project }) => {
+    const projectId = project || Bun.env.ASANA_PROJECT_ID
     try {
       const client = Asana.ApiClient.instance
       const token = client.authentications.token
       token.accessToken = Bun.env.ASANA_ACCESS_TOKEN
 
       const sectionsApiInstance = new Asana.SectionsApi()
-      const result = await sectionsApiInstance.getSectionsForProject(project)
+      const result = await sectionsApiInstance.getSectionsForProject(projectId)
 
       return {
         content: [
