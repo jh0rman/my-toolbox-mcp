@@ -4,6 +4,7 @@ import packageJson from '../package.json'
 import { getAsanaSections } from './tools/asana/get-sections'
 import { getAsanaTasks } from './tools/asana/get-tasks'
 import { getAsanaTask } from './tools/asana/get-task'
+import { updateAsanaTask } from './tools/asana/update-task'
 
 const server = new McpServer({
   name: packageJson.name,
@@ -13,6 +14,7 @@ const server = new McpServer({
 server.register(getAsanaSections)
 server.register(getAsanaTasks)
 server.register(getAsanaTask)
+server.register(updateAsanaTask)
 
 async function main() {
   const transport = new StdioServerTransport()
